@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sayid Maxamed Primary &amp; Secondary School</title>
+<meta name="description" content="Sayid Maxamed Primary and Secondary School — Bosaso, Puntland. Aqoon waa Iftiin: Knowledge is Light.">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          pine:   { DEFAULT: '#0E3B36', light: '#154F49', dark: '#092623' },
+          gold:   { DEFAULT: '#C99A3B', light: '#E0BE72', dark: '#9C7524' },
+          sage:   '#E8EEE9',
+          canvas: '#FBFAF6',
+          ink:    '#182220',
+        },
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          body: ['Inter', 'sans-serif'],
+          mono: ['IBM Plex Mono', 'monospace'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background-color: #FBFAF6; }
+
+  /* ruled notebook texture for academics section */
+  .ruled-bg {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 35px,
+      rgba(14,59,54,0.08) 36px
+    );
+    background-position: 0 10px;
+  }
+  .margin-rule::before {
+    content: "";
+    position: absolute;
+    left: 48px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(201,154,59,0.35);
+  }
+
+  /* fade-up reveal */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+  /* seal spin on hover */
+  .seal:hover .seal-ring { animation: spin 12s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* tab underline */
+  .track-btn[aria-selected="true"] { color: #0E3B36; }
+  .track-btn[aria-selected="true"] .underline-bar { transform: scaleX(1); }
+  .underline-bar { transform: scaleX(0); transition: transform .3s ease; transform-origin: left; }
+
+  ::selection { background: #C99A3B; color: #0E3B36; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { transition: none; opacity: 1; transform: none; }
+    .seal:hover .seal-ring { animation: none; }
+  }
+</style>
+</head>
+
+<body class="font-body text-ink antialiased">
+
+<!-- ================= NAV ================= -->
+<header id="site-nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between h-20">
+    <a href="#home" class="flex items-center gap-3 group">
+      <svg class="seal w-11 h-11 shrink-0" viewBox="0 0 100 100" fill="none">
+        <g class="seal-ring origin-center">
+          <circle cx="50" cy="50" r="47" stroke="#C99A3B" stroke-width="2.5"/>
+          <circle cx="50" cy="50" r="39" stroke="#C99A3B" stroke-width="1" stroke-dasharray="2 4"/>
+        </g>
+        <path d="M50 16 L54 30 L69 30 L57 39 L61 53 L50 44 L39 53 L43 39 L31 30 L46 30 Z" fill="#C99A3B"/>
+        <text x="50" y="72" text-anchor="middle" font-family="Fraunces, serif" font-weight="600" font-size="22" fill="#0E3B36">SM</text>
+      </svg>
+      <span class="font-display font-semibold leading-tight text-nav-color">
+        <span id="nav-title-1" class="block text-[15px] sm:text-base transition-colors">Sayid Maxamed</span>
+        <span id="nav-title-2" class="block text-[10px] sm:text-xs tracking-[0.2em] uppercase transition-colors">Primary &amp; Secondary School</span>
+      </span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-9 font-medium text-sm" id="nav-links">
+      <a href="#about" class="nav-link hover:opacity-70 transition">About</a>
+      <a href="#academics" class="nav-link hover:opacity-70 transition">Academics</a>
+      <a href="#why-us" class="nav-link hover:opacity-70 transition">Why Us</a>
+      <a href="#admissions" class="nav-link hover:opacity-70 transition">Admissions</a>
+      <a href="#gallery" class="nav-link hover:opacity-70 transition">Gallery</a>
+      <a href="#contact" class="nav-link hover:opacity-70 transition">Contact</a>
+    </nav>
+
+    <a href="#admissions" class="hidden lg:inline-flex items-center gap-2 bg-gold hover:bg-gold-dark text-pine-dark font-semibold text-sm px-5 py-2.5 rounded-full transition-colors">
+      Apply Now
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <button id="menu-btn" class="lg:hidden w-10 h-10 flex items-center justify-center" aria-label="Open menu">
+      <svg id="menu-icon" class="w-6 h-6 nav-icon-color" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+
+  <!-- mobile menu -->
+  <div id="mobile-menu" class="lg:hidden hidden bg-pine text-white px-6 pb-6 pt-2 flex flex-col gap-4 font-medium">
+    <a href="#about" class="mobile-link py-2 border-b border-white/10">About</a>
+    <a href="#academics" class="mobile-link py-2 border-b border-white/10">Academics</a>
+    <a href="#why-us" class="mobile-link py-2 border-b border-white/10">Why Us</a>
+    <a href="#admissions" class="mobile-link py-2 border-b border-white/10">Admissions</a>
+    <a href="#gallery" class="mobile-link py-2 border-b border-white/10">Gallery</a>
+    <a href="#contact" class="mobile-link py-2 border-b border-white/10">Contact</a>
+    <a href="#admissions" class="bg-gold text-pine-dark font-semibold text-center rounded-full py-2.5 mt-2">Apply Now</a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section id="home" class="relative bg-pine text-white overflow-hidden pt-40 pb-28 sm:pt-48 sm:pb-36">
+  <!-- ambient pattern -->
+  <div class="absolute inset-0 opacity-[0.06]" style="background-image: radial-gradient(circle at 2px 2px, #E0BE72 1.5px, transparent 0); background-size: 26px 26px;"></div>
+  <div class="absolute -right-24 -top-24 w-[480px] h-[480px] rounded-full bg-pine-light/40 blur-3xl"></div>
+
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7">
+      <p class="reveal font-mono text-gold-light text-xs tracking-[0.25em] uppercase mb-5">Bosaso · Puntland, Somalia</p>
+      <h1 class="reveal font-display text-4xl sm:text-5xl md:text-6xl leading-[1.08] font-semibold">
+        Aqoon waa Iftiin.<br>
+        <span class="italic text-gold-light">Knowledge is Light.</span>
+      </h1>
+      <p class="reveal mt-7 text-white/75 text-base sm:text-lg max-w-xl leading-relaxed" style="transition-delay:.1s">
+        For over two decades, Sayid Maxamed Primary &amp; Secondary School has prepared children in Bosaso for university, trade, and life — grounded in discipline, faith, and a genuine love of learning.
+      </p>
+      <div class="reveal flex flex-wrap gap-4 mt-9" style="transition-delay:.2s">
+        <a href="#admissions" class="bg-gold hover:bg-gold-dark text-pine-dark font-semibold px-7 py-3.5 rounded-full transition-colors text-sm">Apply for Admission</a>
+        <a href="#academics" class="border border-white/30 hover:bg-white/10 px-7 py-3.5 rounded-full transition-colors text-sm font-medium">Explore Academics</a>
+      </div>
+    </div>
+
+    <!-- stats card -->
+    <div class="lg:col-span-5 reveal" style="transition-delay:.15s">
+      <div class="bg-pine-dark/60 border border-white/10 rounded-2xl p-7 sm:p-9 backdrop-blur-sm grid grid-cols-2 gap-8">
+        <div>
+          <p class="font-display text-3xl sm:text-4xl font-semibold text-gold-light">1999</p>
+          <p class="text-white/60 text-xs mt-1 tracking-wide uppercase font-mono">Est. — Founded</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl sm:text-4xl font-semibold text-gold-light">1,150+</p>
+          <p class="text-white/60 text-xs mt-1 tracking-wide uppercase font-mono">Students Enrolled</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl sm:text-4xl font-semibold text-gold-light">62</p>
+          <p class="text-white/60 text-xs mt-1 tracking-wide uppercase font-mono">Teaching Staff</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl sm:text-4xl font-semibold text-gold-light">94%</p>
+          <p class="text-white/60 text-xs mt-1 tracking-wide uppercase font-mono">Secondary Pass Rate</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="py-24 sm:py-32 bg-canvas">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-16 items-start">
+    <div class="lg:col-span-5 reveal">
+      <p class="font-mono text-xs tracking-[0.25em] uppercase text-gold-dark mb-4">Our Story</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-semibold leading-tight text-pine-dark">
+        A school built by the community it serves.
+      </h2>
+      <p class="mt-6 text-ink/70 leading-relaxed">
+        Sayid Maxamed School opened its doors with three classrooms and forty students. Today it is one of the region's most trusted institutions — carrying both the Somali national curriculum and a growing English-medium track, so every graduate leaves fluent, capable, and ready.
+      </p>
+      <div class="mt-8 flex items-center gap-4">
+        <div class="w-14 h-14 rounded-full bg-sage flex items-center justify-center shrink-0">
+          <svg class="w-6 h-6 text-pine" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 3 7l9 5 9-5-9-5Z"/><path d="M3 12l9 5 9-5M3 17l9 5 9-5"/></svg>
+        </div>
+        <p class="text-sm text-ink/60 leading-snug">Accredited under the Puntland Ministry of Education, following the national primary and secondary curriculum.</p>
+      </div>
+    </div>
+
+    <div class="lg:col-span-7 grid sm:grid-cols-2 gap-6">
+      <div class="reveal bg-white rounded-2xl p-8 border border-pine/10">
+        <p class="font-display text-xl font-semibold text-pine-dark mb-2">Our Mission</p>
+        <p class="text-sm text-ink/65 leading-relaxed">To deliver disciplined, high-quality education that builds character, critical thinking, and Islamic values — preparing every student for the next stage of life, whether university, vocation, or civic leadership.</p>
+      </div>
+      <div class="reveal bg-white rounded-2xl p-8 border border-pine/10" style="transition-delay:.1s">
+        <p class="font-display text-xl font-semibold text-pine-dark mb-2">Our Vision</p>
+        <p class="text-sm text-ink/65 leading-relaxed">To be Bosaso's leading school for academic excellence — a place where every child, regardless of background, is given the tools to lead with knowledge and integrity.</p>
+      </div>
+      <div class="reveal bg-pine rounded-2xl p-8 text-white sm:col-span-2" style="transition-delay:.15s">
+        <p class="font-display text-xl font-semibold mb-3">Our Values</p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-5 text-sm">
+          <p class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-light"></span>Discipline</p>
+          <p class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-light"></span>Integrity</p>
+          <p class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-light"></span>Curiosity</p>
+          <p class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-light"></span>Community</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ACADEMICS ================= -->
+<section id="academics" class="relative py-24 sm:py-32 bg-white ruled-bg">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 relative margin-rule pl-16 sm:pl-20">
+    <p class="font-mono text-xs tracking-[0.25em] uppercase text-gold-dark mb-4 reveal">Academics</p>
+    <h2 class="font-display text-3xl sm:text-4xl font-semibold text-pine-dark max-w-2xl reveal">Two tracks, one standard of excellence.</h2>
+    <p class="mt-4 text-ink/60 max-w-xl reveal">Every child moves through two clear stages under one roof — a foundation in Primary, and specialization in Secondary.</p>
+
+    <!-- track toggle -->
+    <div class="mt-10 flex gap-8 border-b border-pine/10 reveal" role="tablist">
+      <button class="track-btn relative pb-4 font-display text-lg font-medium text-ink/40 transition-colors" data-track="primary" role="tab" aria-selected="true">
+        Primary <span class="text-xs font-mono block sm:inline sm:ml-1 text-ink/40">Grades 1–8</span>
+        <span class="underline-bar absolute left-0 -bottom-[1px] w-full h-[3px] bg-gold"></span>
+      </button>
+      <button class="track-btn relative pb-4 font-display text-lg font-medium text-ink/40 transition-colors" data-track="secondary" role="tab" aria-selected="false">
+        Secondary <span class="text-xs font-mono block sm:inline sm:ml-1 text-ink/40">Forms 1–4</span>
+        <span class="underline-bar absolute left-0 -bottom-[1px] w-full h-[3px] bg-gold"></span>
+      </button>
+    </div>
+
+    <!-- primary panel -->
+    <div id="panel-primary" class="track-panel grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
+      <div class="bg-sage rounded-xl p-6 reveal"><p class="font-display font-semibold text-pine-dark mb-1">Literacy</p><p class="text-sm text-ink/60">Somali &amp; English reading, writing, and comprehension.</p></div>
+      <div class="bg-sage rounded-xl p-6 reveal" style="transition-delay:.05s"><p class="font-display font-semibold text-pine-dark mb-1">Foundational Maths</p><p class="text-sm text-ink/60">Number sense through to early algebra and geometry.</p></div>
+      <div class="bg-sage rounded-xl p-6 reveal" style="transition-delay:.1s"><p class="font-display font-semibold text-pine-dark mb-1">Islamic Studies</p><p class="text-sm text-ink/60">Qur'an, Fiqh, and Akhlaaq woven through daily life.</p></div>
+      <div class="bg-sage rounded-xl p-6 reveal" style="transition-delay:.15s"><p class="font-display font-semibold text-pine-dark mb-1">Science &amp; Nature</p><p class="text-sm text-ink/60">Hands-on introduction to the physical and natural world.</p></div>
+    </div>
+
+    <!-- secondary panel -->
+    <div id="panel-secondary" class="track-panel hidden grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
+      <div class="bg-sage rounded-xl p-6 reveal"><p class="font-display font-semibold text-pine-dark mb-1">Sciences</p><p class="text-sm text-ink/60">Biology, Chemistry, and Physics with lab practicals.</p></div>
+      <div class="bg-sage rounded-xl p-6 reveal" style="transition-delay:.05s"><p class="font-display font-semibold text-pine-dark mb-1">Mathematics</p><p class="text-sm text-ink/60">Algebra, geometry, and statistics through Form 4.</p></div>
+      <div class="bg-sage rounded-xl p-6 reveal" style="transition-delay:.1s"><p class="font-display font-semibold text-pine-dark mb-1">Languages</p><p class="text-sm text-ink/60">Advanced English and Arabic composition &amp; literature.</p></div>
+      <div class="bg-sage rounded-xl p-6 reveal" style="transition-delay:.15s"><p class="font-display font-semibold text-pine-dark mb-1">Humanities</p><p class="text-sm text-ink/60">History, Geography, and Civics for engaged citizens.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY US ================= -->
+<section id="why-us" class="py-24 sm:py-32 bg-pine-dark text-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <p class="font-mono text-xs tracking-[0.25em] uppercase text-gold-light mb-4 reveal">Why Families Choose Us</p>
+    <h2 class="font-display text-3xl sm:text-4xl font-semibold max-w-xl reveal">Small classes. Close attention. Real results.</h2>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
+      <div class="reveal border border-white/10 rounded-2xl p-7 hover:bg-white/5 transition-colors">
+        <svg class="w-8 h-8 text-gold-light mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <p class="font-display font-semibold text-lg mb-1">Low Student-Teacher Ratio</p>
+        <p class="text-sm text-white/60 leading-relaxed">Averaging 1:22, so no child is overlooked.</p>
+      </div>
+      <div class="reveal border border-white/10 rounded-2xl p-7 hover:bg-white/5 transition-colors" style="transition-delay:.05s">
+        <svg class="w-8 h-8 text-gold-light mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <p class="font-display font-semibold text-lg mb-1">Qualified Educators</p>
+        <p class="text-sm text-white/60 leading-relaxed">Trained teachers with ongoing professional development.</p>
+      </div>
+      <div class="reveal border border-white/10 rounded-2xl p-7 hover:bg-white/5 transition-colors" style="transition-delay:.1s">
+        <svg class="w-8 h-8 text-gold-light mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
+        <p class="font-display font-semibold text-lg mb-1">Dual Curriculum</p>
+        <p class="text-sm text-white/60 leading-relaxed">National syllabus alongside a strong English track.</p>
+      </div>
+      <div class="reveal border border-white/10 rounded-2xl p-7 hover:bg-white/5 transition-colors" style="transition-delay:.15s">
+        <svg class="w-8 h-8 text-gold-light mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M6 10v6c0 1.5 3 3 6 3s6-1.5 6-3v-6"/></svg>
+        <p class="font-display font-semibold text-lg mb-1">Strong Exam Results</p>
+        <p class="text-sm text-white/60 leading-relaxed">94% secondary completion pass rate last year.</p>
+      </div>
+      <div class="reveal border border-white/10 rounded-2xl p-7 hover:bg-white/5 transition-colors" style="transition-delay:.2s">
+        <svg class="w-8 h-8 text-gold-light mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"/></svg>
+        <p class="font-display font-semibold text-lg mb-1">Faith &amp; Character</p>
+        <p class="text-sm text-white/60 leading-relaxed">Islamic values integrated into everyday school life.</p>
+      </div>
+      <div class="reveal border border-white/10 rounded-2xl p-7 hover:bg-white/5 transition-colors" style="transition-delay:.25s">
+        <svg class="w-8 h-8 text-gold-light mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
+        <p class="font-display font-semibold text-lg mb-1">Sports &amp; Clubs</p>
+        <p class="text-sm text-white/60 leading-relaxed">Football, debate, and science club after school.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ADMISSIONS ================= -->
+<section id="admissions" class="py-24 sm:py-32 bg-canvas">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-16">
+    <div class="lg:col-span-5 reveal">
+      <p class="font-mono text-xs tracking-[0.25em] uppercase text-gold-dark mb-4">Admissions</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-semibold text-pine-dark leading-tight">Enrolling now for the next term.</h2>
+      <p class="mt-6 text-ink/70 leading-relaxed">Spaces are limited in every grade. Families are encouraged to begin the process early — our admissions team is on hand to help at every step.</p>
+      <div class="mt-8 bg-white border border-pine/10 rounded-2xl p-6">
+        <p class="font-display font-semibold text-pine-dark mb-3">Required Documents</p>
+        <ul class="text-sm text-ink/65 space-y-2">
+          <li class="flex gap-2"><span class="text-gold-dark">—</span> Birth certificate or ID</li>
+          <li class="flex gap-2"><span class="text-gold-dark">—</span> Previous school report (if any)</li>
+          <li class="flex gap-2"><span class="text-gold-dark">—</span> Two passport photographs</li>
+          <li class="flex gap-2"><span class="text-gold-dark">—</span> Completed application form</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lg:col-span-7">
+      <ol class="space-y-6">
+        <li class="reveal flex gap-5">
+          <span class="font-mono text-2xl text-gold-dark font-medium shrink-0 w-10">01</span>
+          <div class="border-b border-pine/10 pb-6 flex-1">
+            <p class="font-display font-semibold text-lg text-pine-dark">Submit an application</p>
+            <p class="text-sm text-ink/60 mt-1">Complete the form online or collect one from the school office.</p>
+          </div>
+        </li>
+        <li class="reveal flex gap-5" style="transition-delay:.05s">
+          <span class="font-mono text-2xl text-gold-dark font-medium shrink-0 w-10">02</span>
+          <div class="border-b border-pine/10 pb-6 flex-1">
+            <p class="font-display font-semibold text-lg text-pine-dark">Placement assessment</p>
+            <p class="text-sm text-ink/60 mt-1">A short, friendly evaluation to confirm the right grade level.</p>
+          </div>
+        </li>
+        <li class="reveal flex gap-5" style="transition-delay:.1s">
+          <span class="font-mono text-2xl text-gold-dark font-medium shrink-0 w-10">03</span>
+          <div class="border-b border-pine/10 pb-6 flex-1">
+            <p class="font-display font-semibold text-lg text-pine-dark">Family interview</p>
+            <p class="text-sm text-ink/60 mt-1">A short conversation with our admissions team.</p>
+          </div>
+        </li>
+        <li class="reveal flex gap-5" style="transition-delay:.15s">
+          <span class="font-mono text-2xl text-gold-dark font-medium shrink-0 w-10">04</span>
+          <div class="pb-2 flex-1">
+            <p class="font-display font-semibold text-lg text-pine-dark">Confirm enrollment</p>
+            <p class="text-sm text-ink/60 mt-1">Complete registration and welcome your child to the school.</p>
+          </div>
+        </li>
+      </ol>
+
+      <form id="apply-form" class="reveal mt-10 bg-white border border-pine/10 rounded-2xl p-7 grid sm:grid-cols-2 gap-5">
+        <p class="font-display font-semibold text-pine-dark sm:col-span-2 -mb-1">Start your application</p>
+        <input required type="text" placeholder="Parent / Guardian name" class="border border-pine/15 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gold">
+        <input required type="text" placeholder="Child's name" class="border border-pine/15 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gold">
+        <input required type="tel" placeholder="Phone number" class="border border-pine/15 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gold">
+        <select required class="border border-pine/15 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gold text-ink/70">
+          <option value="">Grade applying for</option>
+          <option>Primary — Grade 1–4</option>
+          <option>Primary — Grade 5–8</option>
+          <option>Secondary — Form 1–2</option>
+          <option>Secondary — Form 3–4</option>
+        </select>
+        <button type="submit" class="sm:col-span-2 bg-pine hover:bg-pine-light text-white font-semibold rounded-lg py-3.5 text-sm transition-colors">Submit Application</button>
+        <p id="form-success" class="hidden sm:col-span-2 text-sm text-pine-dark bg-sage rounded-lg px-4 py-3">Thank you — our admissions team will contact you within two working days.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery" class="py-24 sm:py-32 bg-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <p class="font-mono text-xs tracking-[0.25em] uppercase text-gold-dark mb-4 reveal">Campus Life</p>
+    <h2 class="font-display text-3xl sm:text-4xl font-semibold text-pine-dark max-w-xl reveal">A glimpse inside our classrooms.</h2>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
+      <div class="reveal rounded-2xl overflow-hidden aspect-[4/5] col-span-2 row-span-2">
+        <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=1000&auto=format&fit=crop" alt="Students in a classroom" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+      </div>
+      <div class="reveal rounded-2xl overflow-hidden aspect-square" style="transition-delay:.05s">
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800&auto=format&fit=crop" alt="Library books" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+      </div>
+      <div class="reveal rounded-2xl overflow-hidden aspect-square" style="transition-delay:.1s">
+        <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=800&auto=format&fit=crop" alt="Students studying" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+      </div>
+      <div class="reveal rounded-2xl overflow-hidden aspect-square" style="transition-delay:.15s">
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop" alt="Science class" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+      </div>
+      <div class="reveal rounded-2xl overflow-hidden aspect-square" style="transition-delay:.2s">
+        <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=800&auto=format&fit=crop" alt="School courtyard" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="py-24 sm:py-32 bg-sage">
+  <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center">
+    <p class="font-mono text-xs tracking-[0.25em] uppercase text-gold-dark mb-4 reveal">Parents &amp; Alumni</p>
+    <div class="relative reveal min-h-[200px] sm:min-h-[160px]">
+      <div id="testi-track"></div>
+    </div>
+    <div id="testi-dots" class="flex justify-center gap-2 mt-8"></div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="py-24 sm:py-32 bg-pine text-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-16">
+    <div class="lg:col-span-5 reveal">
+      <p class="font-mono text-xs tracking-[0.25em] uppercase text-gold-light mb-4">Contact</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-semibold leading-tight">Come visit our campus.</h2>
+      <p class="mt-6 text-white/70 leading-relaxed">We welcome families to tour the school any weekday morning. Reach out any time — our office is glad to help.</p>
+
+      <div class="mt-9 space-y-6 text-sm">
+        <div class="flex gap-4">
+          <svg class="w-5 h-5 text-gold-light shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <p class="text-white/80">Golweyn District, near Bosaso General Hospital<br>Bosaso, Puntland, Somalia</p>
+        </div>
+        <div class="flex gap-4">
+          <svg class="w-5 h-5 text-gold-light shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          <p class="text-white/80">+252 90 XXX XXXX<br>+252 90 XXX XXXY</p>
+        </div>
+        <div class="flex gap-4">
+          <svg class="w-5 h-5 text-gold-light shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m4 4 16 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="m22 6-10 7L2 6"/></svg>
+          <p class="text-white/80">info@sayidmaxamedschool.edu.so</p>
+        </div>
+        <div class="flex gap-4">
+          <svg class="w-5 h-5 text-gold-light shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <p class="text-white/80">Sunday – Thursday, 7:30am – 2:30pm</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-7 reveal">
+      <div class="rounded-2xl overflow-hidden border border-white/10 aspect-[16/10] bg-pine-dark">
+        <iframe
+          class="w-full h-full grayscale-[40%] contrast-[1.1]"
+          loading="lazy"
+          src="https://www.google.com/maps?q=Bosaso,Puntland,Somalia&output=embed">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-pine-dark text-white/70 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="47" stroke="#C99A3B" stroke-width="2.5"/>
+            <path d="M50 16 L54 30 L69 30 L57 39 L61 53 L50 44 L39 53 L43 39 L31 30 L46 30 Z" fill="#C99A3B"/>
+            <text x="50" y="72" text-anchor="middle" font-family="Fraunces, serif" font-weight="600" font-size="22" fill="#FBFAF6">SM</text>
+          </svg>
+          <p class="font-display text-white font-semibold text-lg">Sayid Maxamed School</p>
+        </div>
+        <p class="text-sm leading-relaxed">Building Bosaso's next generation of leaders, one classroom at a time.</p>
+      </div>
+      <div>
+        <p class="text-white font-semibold text-sm mb-4 tracking-wide uppercase">Explore</p>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#about" class="hover:text-gold-light transition">About Us</a></li>
+          <li><a href="#academics" class="hover:text-gold-light transition">Academics</a></li>
+          <li><a href="#admissions" class="hover:text-gold-light transition">Admissions</a></li>
+          <li><a href="#gallery" class="hover:text-gold-light transition">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white font-semibold text-sm mb-4 tracking-wide uppercase">Programs</p>
+        <ul class="space-y-2.5 text-sm">
+          <li>Primary — Grades 1–8</li>
+          <li>Secondary — Forms 1–4</li>
+          <li>Islamic Studies</li>
+          <li>After-School Clubs</li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white font-semibold text-sm mb-4 tracking-wide uppercase">Newsletter</p>
+        <p class="text-sm mb-4">School news and term dates, occasionally.</p>
+        <form class="flex gap-2" onsubmit="event.preventDefault(); this.reset(); alert('Thank you for subscribing.');">
+          <input type="email" required placeholder="Email address" class="min-w-0 flex-1 bg-white/10 border border-white/15 rounded-lg px-3 py-2.5 text-sm placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-gold">
+          <button class="bg-gold text-pine-dark rounded-lg px-4 text-sm font-semibold shrink-0">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-white/50">
+      <p>© <span id="year"></span> Sayid Maxamed Primary &amp; Secondary School. All rights reserved.</p>
+      <p>Bosaso, Puntland, Somalia</p>
+    </div>
+  </div>
+</footer>
+
+<!-- back to top -->
+<button id="to-top" aria-label="Back to top" class="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-gold text-pine-dark shadow-lg flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+
+<script>
+  // ---------- Mobile menu ----------
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+  document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+  // ---------- Sticky nav style on scroll ----------
+  const nav = document.getElementById('site-nav');
+  const navTitle1 = document.getElementById('nav-title-1');
+  const navTitle2 = document.getElementById('nav-title-2');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const menuIcon = document.getElementById('menu-icon');
+
+  function setNavStyle(scrolled) {
+    if (scrolled) {
+      nav.classList.add('bg-canvas/95', 'backdrop-blur-sm', 'shadow-sm');
+      navTitle1.classList.remove('text-white');
+      navTitle1.classList.add('text-pine-dark');
+      navTitle2.classList.remove('text-white/70');
+      navTitle2.classList.add('text-gold-dark');
+      navLinks.forEach(l => { l.classList.remove('text-white'); l.classList.add('text-ink'); });
+      menuIcon.classList.remove('text-white'); menuIcon.classList.add('text-pine-dark');
+    } else {
+      nav.classList.remove('bg-canvas/95', 'backdrop-blur-sm', 'shadow-sm');
+      navTitle1.classList.add('text-white');
+      navTitle1.classList.remove('text-pine-dark');
+      navTitle2.classList.add('text-white/70');
+      navTitle2.classList.remove('text-gold-dark');
+      navLinks.forEach(l => { l.classList.add('text-white'); l.classList.remove('text-ink'); });
+      menuIcon.classList.add('text-white'); menuIcon.classList.remove('text-pine-dark');
+    }
+  }
+  setNavStyle(false);
+  window.addEventListener('scroll', () => {
+    setNavStyle(window.scrollY > 40);
+    const toTop = document.getElementById('to-top');
+    if (window.scrollY > 600) { toTop.classList.remove('opacity-0','pointer-events-none'); }
+    else { toTop.classList.add('opacity-0','pointer-events-none'); }
+  });
+
+  document.getElementById('to-top').addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  // ---------- Scroll reveal ----------
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ---------- Academics track toggle ----------
+  const trackBtns = document.querySelectorAll('.track-btn');
+  trackBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      trackBtns.forEach(b => { b.setAttribute('aria-selected','false'); b.classList.add('text-ink/40'); b.classList.remove('text-pine-dark'); });
+      btn.setAttribute('aria-selected','true'); btn.classList.remove('text-ink/40');
+      document.querySelectorAll('.track-panel').forEach(p => p.classList.add('hidden'));
+      const panel = document.getElementById('panel-' + btn.dataset.track);
+      panel.classList.remove('hidden');
+      panel.querySelectorAll('.reveal').forEach(el => { el.classList.remove('in-view'); requestAnimationFrame(()=> requestAnimationFrame(()=> el.classList.add('in-view'))); });
+    });
+  });
+
+  // ---------- Testimonial carousel ----------
+  const testimonials = [
+    { quote: "My son struggled with math until his teacher here took real time with him. Now it's his favorite subject.", name: "Faadumo A.", role: "Parent, Grade 6" },
+    { quote: "The discipline and Islamic studies program shaped who I am today. I still visit my old classroom.", name: "Cabdiraxmaan H.", role: "Alumnus, Class of 2018" },
+    { quote: "Small classes mean the teachers actually know my daughter — not just her name, but how she learns.", name: "Sahra M.", role: "Parent, Grade 3" },
+  ];
+  const track = document.getElementById('testi-track');
+  const dotsWrap = document.getElementById('testi-dots');
+  let testiIndex = 0, testiTimer;
+
+  function renderTesti(i) {
+    const t = testimonials[i];
+    track.innerHTML = `
+      <p class="font-display text-xl sm:text-2xl text-pine-dark leading-snug italic">"${t.quote}"</p>
+      <p class="mt-5 font-mono text-xs tracking-wide uppercase text-gold-dark">${t.name} — ${t.role}</p>
+    `;
+    dotsWrap.querySelectorAll('button').forEach((d, di) => {
+      d.classList.toggle('bg-pine', di === i);
+      d.classList.toggle('bg-pine/20', di !== i);
+    });
+  }
+  testimonials.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'w-2.5 h-2.5 rounded-full transition-colors ' + (i === 0 ? 'bg-pine' : 'bg-pine/20');
+    dot.setAttribute('aria-label', 'Show testimonial ' + (i+1));
+    dot.addEventListener('click', () => { testiIndex = i; renderTesti(i); resetTestiTimer(); });
+    dotsWrap.appendChild(dot);
+  });
+  function resetTestiTimer() {
+    clearInterval(testiTimer);
+    testiTimer = setInterval(() => { testiIndex = (testiIndex + 1) % testimonials.length; renderTesti(testiIndex); }, 5500);
+  }
+  renderTesti(0);
+  resetTestiTimer();
+
+  // ---------- Application form (static demo) ----------
+  document.getElementById('apply-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('form-success').classList.remove('hidden');
+    e.target.querySelectorAll('input, select').forEach(f => f.value = '');
+  });
+
+  // ---------- Footer year ----------
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
